@@ -1,0 +1,35 @@
+{
+    "name": "lmmlwen/xthk-log",
+    "description": "xthk common default log package",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability":"dev",
+    "require": {
+        "php": ">=7.1.0",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-openssl": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.0",
+        "ramsey/uuid": "3.x",
+        "moontoast/math": "^1.2"
+    },
+    "authors": [
+        {
+            "name": "liujianxin0122",
+            "email": "liujianxin0122@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Lmmlwen\\Xthklog\\": "src"
+        }
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://mirrors.aliyun.com/composer/"
+        }
+    }
+}
