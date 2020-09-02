@@ -21,21 +21,24 @@ class XthkLogLaravelPackageServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
 
         // 注册中间件
-        // $kernel = $this->app->make(Kernel::class);
-        // $kernel->pushMiddleware(LogMiddleware::class);
-
-        $this->app->middleware([
-            LogMiddleware::class
-        ]);
+        if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
+            $kernel = $this->app->make(Kernel::class);
+            $kernel->pushMiddleware(LogMiddleware::class);
+        } else if ($this->app instanceof LumenApplication) {
+            $this->app->middleware([
+                LogMiddleware::class
+            ]);
+        }
 
         $source = __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'merge_logging.php';
 
         $target = config_path('logging.php');
 
         if (!file_exists($target)) {
-            $this->writeFileContent(config_path('logging.php'));
+            $this->writeFileContent($target);
         }
 
+        // 合并配置文件
         $this->mergeConfigFrom($source, 'logging.channels');
     }
 
