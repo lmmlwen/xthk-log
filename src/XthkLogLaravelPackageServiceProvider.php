@@ -7,6 +7,8 @@ use Illuminate\Contracts\Http\Kernel;
 use Lmmlwen\Xthklog\Middleware\LogMiddleware;
 use Lmmlwen\Xthklog\Logging\LineFormatter;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Foundation\Application as LaravelApplication;
+use Laravel\Lumen\Application as LumenApplication;
 
 class XthkLogLaravelPackageServiceProvider extends ServiceProvider
 {
@@ -52,7 +54,8 @@ class XthkLogLaravelPackageServiceProvider extends ServiceProvider
 
     }
 
-    private function writeFileContent($file){
+    private function writeFileContent($file)
+    {
         $text  = "<?php\n";
         $text .= "\n";
         $text .= "use Monolog\Handler\StreamHandler;\n";
